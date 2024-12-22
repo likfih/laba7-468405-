@@ -1,0 +1,622 @@
+@charset "UTF-8";
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body{
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.container {
+  max-width: 1198px;
+  padding-inline: 2.5em;
+  margin-block-start: 1.5em;
+  margin-inline: auto;
+}
+
+/**
+  Нормализация блочной модели
+ */
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+button {
+  all: unset;
+  box-sizing: inherit;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+  list-style-type: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 1.75em;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+/*svg *[fill] {
+  fill: currentColor;
+}*/
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+.tema11{
+  font-size: 45px;
+  line-height: 58px;
+  color: #000000;
+  margin-bottom: 0;
+}
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+h1 {
+  font-size: clamp(
+    2.8125rem,
+    2.3509615385rem + 2.0512820513vw,
+    4.8125rem
+  );
+}
+
+h2 {
+  font-size: clamp(
+    3rem,
+    2.8615384615rem + 0.6153846154vw,
+    3.6rem
+  );
+}
+
+body {
+  font-size: clamp(
+    1rem,
+    0.8846153846rem + 0.5128205128vw,
+    1.5rem
+  );
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 20%;
+  min-width: fit-content;
+  text-decoration: none;
+  padding-inline: 0.8em;
+  padding-block: 0.6em;
+}
+
+.header {
+  max-width: 1198px;
+  min-height: 52.5px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 2.625em;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  column-gap: 2em;
+}
+
+.ppp {
+  display: flex;
+  column-gap: 0.4em;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+  transition: scale 0.2s, color 0.2s;
+}
+
+.link:hover {
+  scale: 1.1;
+  color: #7CACAE;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1em;
+}
+
+.login {
+  flex: 1 1 50%;
+  min-width: fit-content;
+  height: 100%;
+  padding-inline: 0.6em;
+  padding-block: 0.4em;
+  font-size: 18px;
+  border: 1.5px solid black;
+  border-radius: 1.5em;
+  transition: background-color 0.2s, scale 0.2s;
+}
+
+.Rectangle {
+  flex: 1 1 20%;
+  min-width: fit-content;
+  height: 100%;
+  padding-inline: 0.6em;
+  padding-block: 0.4em;
+  font-size: 18px;
+  color: aliceblue;
+  background-color: black;
+  border: 1.5px solid black;
+  border-radius: 1.5em;
+  transition: background-color 0.2s, scale 0.2s;
+}
+
+.login:hover,
+.Rectangle:hover {
+  scale: 1.05;
+  background-color: #7CACAE;
+}
+
+footer{
+  background: #302E3F;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2vw;
+}
+
+.item-footer{
+float: left;
+overflow: hidden; 
+margin:5px;
+box-sizing:border-box; /* чтобы внутренний отступ не влиял когда там будет текст... */
+min-width:170px;
+}
+
+.item-footer h3{
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #FFFFFF;
+  padding-bottom: 5px;
+}
+
+.item-footer-list{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #C5E9EA;
+  display: block;
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 200px;
+}
+
+.item-footer-list:hover{
+  color: #90b3b5;
+  text-decoration: none;
+}
+
+.item-footer-list:visited{
+  color: #C5E9EA;
+}
+
+.us {
+  margin: 15px 0 0 0;
+  overflow: hidden;
+  width: auto;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1800px; /* макс ширина */
+}
+
+.item-footer h3{
+  width: auto;
+}
+
+.police {
+overflow: hidden;
+width: auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+.privati{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (width < 1077px) {
+  .header {
+    row-gap: 1.5em;
+    justify-content: center;
+  }
+  .logo {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    column-gap: 2.6em;
+  }
+}
+@media (width < 965px) {
+  .item {
+    justify-content: center;
+    row-gap: 1.5em;
+  }
+}
+@media (width < 560px) {
+  .ppp {
+    flex-wrap: wrap;
+    row-gap: 1em;
+  }
+}
+img {
+  width: 100%;
+}
+
+.pc {
+  min-width: 550px;
+}
+
+b {
+  font-size: 18px;
+  text-wrap: nowrap;
+}
+
+.bl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-end: 5em;
+}
+
+.warp {
+  display: inline-flex;
+  flex-direction: column;
+  max-width: 485px;
+  min-width: 150px;
+}
+
+.warp:has(> :nth-child(2)) {
+  row-gap: 1em;
+}
+
+.btn {
+  width: fit-content;
+  height: 45px;
+  padding-inline: 0.6em;
+  padding-block: 0.4em;
+  font-size: 18px;
+  color: aliceblue;
+  background-color: black;
+  border: 1.5px solid black;
+  border-radius: 1.5em;
+  transition: background-color 0.2s, scale 0.2s;
+}
+
+@media (width < 1076px) {
+  .colums {
+    justify-content: space-around;
+    row-gap: 2em;
+  }
+  .pc {
+    min-width: 350px;
+  }
+}
+@media (width < 815px) {
+  .joing {
+    row-gap: 2em;
+  }
+  .join {
+    text-align: center;
+  }
+  .bl {
+    flex-wrap: wrap;
+  }
+  .warp:has(> :nth-child(2)) {
+    row-gap: 2em;
+  }
+  .pc {
+    min-width: 350px;
+  }
+  .tema,
+  .texts,
+  .mintext {
+    text-align: center;
+  }
+  .btn {
+    align-self: center;
+  }
+}
+@media (width < 560px) {
+  .bl {
+    flex-wrap: wrap;
+  }
+  .war {
+    flex-direction: column;
+    justify-content: space-around !important;
+  }
+  .pc {
+    min-width: 250px;
+  }
+  .tema,
+  .texts,
+  .mintext {
+    text-align: center;
+  }
+  .btn {
+    align-self: center;
+  }
+}
+.btn:hover {
+  scale: 1.05;
+  background-color: #7CACAE;
+}
+
+.why {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3em;
+  margin-block-end: 5em;
+}
+
+.colums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1.2em;
+  flex: 1 1 33.3333333333%;
+  min-width: 125px;
+}
+
+.colums1,
+.colums2,
+.colums3 {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.plans {
+  position: relative;
+  padding-block: 3em;
+  background-color: transparent;
+  margin-block-end: 5em;
+}
+
+.plans::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw; /* Полная ширина окна браузера */
+  height: 100%; /* Полная высота контейнера */
+  background-color: rgba(253, 236, 237); /* Цвет фона с прозрачностью */
+  transform: translateX(-50%); /* Центрируем фон */
+  z-index: -1; /* Помещаем фон под содержимым */
+}
+
+.papera {
+  row-gap: 2em;
+}
+
+.war {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 283px;
+  background-color: #8BD4D6;
+  border-radius: 1.5em;
+  padding-inline: 3em;
+}
+
+li {
+  font-size: 16px;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw; /* Полная ширина окна браузера */
+  height: 100%; /* Полная высота контейнера */
+  background-color: #302E3F; /* Цвет фона с прозрачностью */
+  transform: translateX(-50%); /* Центрируем фон */
+  z-index: -1; /* Помещаем фон под содержимым */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  row-gap: 1.5em;
+}
+

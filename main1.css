@@ -1,0 +1,392 @@
+@charset "UTF-8";
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+body{
+  font-family: 'Roboto';
+  font-style: normal;
+}
+
+.title{
+  font-size: 35px;
+}
+
+.nav__item{
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 1198px;
+  padding-inline: 1.5em;
+  margin-block-start: 3.5em;
+  margin-inline: auto;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+button {
+  all: unset;
+  box-sizing: inherit;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+  list-style-type: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+p {
+  --paragraphMarginBottom: 1.75em;
+  margin-block: 0;
+}
+
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+h1 {
+  font-size: clamp(
+    1.75rem,
+    1.5769230769rem + 0.7692307692vw,
+    2.5rem
+  );
+}
+
+h2 {
+  font-size: clamp(
+    1.625rem,
+    1.4807692308rem + 0.641025641vw,
+    2.25rem
+  );
+}
+
+h3 {
+  font-size: clamp(
+    1.5rem,
+    1.3846153846rem + 0.5128205128vw,
+    2rem
+  );
+}
+
+h4 {
+  font-size: clamp(
+    1.375rem,
+    1.2884615385rem + 0.3846153846vw,
+    1.75rem
+  );
+}
+
+h5 {
+  font-size: clamp(
+    1.25rem,
+    1.1923076923rem + 0.2564102564vw,
+    1.5rem
+  );
+}
+
+h6 {
+  font-size: clamp(
+    1.125rem,
+    1.0961538462rem + 0.1282051282vw,
+    1.25rem
+  );
+}
+
+body {
+  font-size: clamp(
+    1rem,
+    0.9711538462rem + 0.1282051282vw,
+    1.125rem
+  );
+}
+
+.header {
+  background-color: rgb(237, 155, 189);
+}
+
+.nav {
+  display: flex;
+  height: 100%;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10em;
+  row-gap: 3em;
+  padding-inline: 2em;
+  padding-block: 1.5em;
+}
+.nav__section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+  height: 100%;
+  min-width: fit-content;
+  flex: 1 1 50%;
+}
+.nav__list {
+  display: flex;
+  height: 100%;
+  column-gap: 1em;
+}
+.nav__item {
+  height: 100%;
+  flex: 1 1 33.3333333333%;
+  min-width: fit-content;
+}
+.nav__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  min-height: 44px;
+  color: black;
+  text-decoration: none;
+  transition: scale 0.2s, background-color 0.2s, border-radius 0.2s;
+}
+.nav__link:hover {
+  scale: 1.1;
+  background-color: rgb(237, 155, 189);
+  border: 4px solid rgb(206, 116, 154);
+  border-radius: 1.5em;
+}
+.nav__search-bar {
+  display: block;
+  min-height: 44px;
+}
+
+@media (width < 1078px) {
+  .nav {
+    justify-content: center;
+  }
+  img {
+    align-self: center;
+  }
+}
+@media (width < 768px) {
+  .nav__section {
+    align-self: center;
+    width: fit-content;
+    width: 100%;
+  }
+  .nav__list {
+    justify-content: space-around;
+  }
+}
+.main__content {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 3em;
+}
+.main__books {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 1 33.3333333333%;
+}
+.main__book-captain {
+  display: flex;
+  column-gap: 2em;
+  margin-block-end: 2.5em;
+}
+.main__book-crime {
+  display: flex;
+  column-gap: 2em;
+  margin-block-end: 2.5em;
+  grid-area: crime;
+}
+
+.picture {
+  flex: 1 1 100%;
+  height: auto;
+  min-width: 500px;
+}
+
+.text {
+  max-width: 600px;
+  min-width: 120px;
+  grid-area: txt;
+}
+
+.rrr {
+  object-fit: cover;
+}
+
+.aside {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.advertising {
+  height: 200px;
+}
+
+.adv {
+  object-fit: cover;
+  flex: 1 0;
+  height: 100%;
+}
+
+@media (width < 1078px) {
+  .picture {
+    min-width: 300px;
+  }
+  .main__book-captain{
+    flex-direction: column;
+  }
+  .main__book-crime{
+    flex-direction: column;
+  }
+}
+@media (width < 768px) {
+  .picture {
+    min-width: 100px;
+  }
+  .aside {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 3em;
+    width: 100%;
+  }
+}
+.footer {
+  background-color: rgb(237, 155, 189);
+  margin-block-start: 2em;
+}
+
+.wanted {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 25%;
+}
+
+.ppp {
+  text-align: center;
+}
+
+.label {
+  text-align: center;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+.submit {
+  text-align: center;
+}
